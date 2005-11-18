@@ -6,14 +6,8 @@ use strict;
 use warnings;
 
 BEGIN { use_ok( 'String::MkVarName', qw{ make_varname } ); }
-
-my @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
-my @upper = map { uc($_) } @lower;
-my @eligibles = (@upper, @lower, q{_});
-my @chars = (@eligibles, 0..9);
-
-my %eligibles = map {$_,1} @eligibles;
-my %chars = map {$_,1} @chars;
+our (%eligibles, %chars);
+require "t/eligible_chars";
 
 four_basic_tests() for (1..10);
 
