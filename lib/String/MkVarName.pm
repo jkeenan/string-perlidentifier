@@ -4,6 +4,7 @@ use strict;
 use base qw(Exporter);
 our @EXPORT_OK = qw{ make_varname };
 our $VERSION = "0.02";
+use Carp;
 
 our %forbidden = ();
 our $MIN = 3;
@@ -11,7 +12,35 @@ our $MAX = 20;
 our $DEFAULT = 10;
 
 sub make_varname {
-    my $length = shift;
+    my $length;
+    if (defined $_[0] and ref($_[0]) eq 'HASH') {
+        my $argsref = shift;
+        if (defined $argsref->{min}) {
+            croak "Minimum must be all numerals: $!"
+                unless $argsref->{min} =~ /^\d+$/;
+            croak "Cannot set minimum length less than 2: $!"
+                unless $argsref->{min} >= 2;
+            $MIN = $argsref->{min};
+        }
+        if (defined $argsref->{max}) {
+            croak "Maximum must be all numerals: $!"
+                unless $argsref->{max} =~ /^\d+$/;
+            croak "Cannot set maximum length less than 3: $!"
+                unless $argsref->{max} >= 3;
+            $MAX = $argsref->{max};
+        }
+#        } else {
+#            croak "Cannot set maximum length less than 3: $!";
+#        }
+#        if ( (defined $argsref->{default}) and 
+#             ($argsref->{default} =~ /^\d+$/) ) {
+#            $DEFAULT = $argsref->{default};
+#        } else {
+#            croak "Default must be all numerals: $!";
+#        }
+    } else {
+        $length = shift;
+    }
     $length = $DEFAULT if ! defined $length;
     $length = $MIN if $length < $MIN;
     $length = $MAX if $length > $MAX;

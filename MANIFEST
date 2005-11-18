@@ -6,6 +6,7 @@ MANIFEST.SKIP
 README
 t/01_basic.t
 t/02_specified.t
+t/03_badargs.t
 t/Auxiliary.pm
 t/eligible_chars
 Todo
