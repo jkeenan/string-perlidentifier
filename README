@@ -1,7 +1,7 @@
 README for Perl extension String::MkVarName
 
 This document refers to version 0.02 of String::MkVarName.  
-his version was released November 17, 2005.
+This version was released November 17, 2005.
 
 To install this module on your system, place the tarball archive file in a 
 temporary directory and call the following:

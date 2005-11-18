@@ -3,19 +3,28 @@ use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT_OK = qw{ make_varname };
-our $VERSION = "0.01";
+our $VERSION = "0.02";
+
+our %forbidden = ();
+our $MIN = 3;
+our $MAX = 20;
+our $DEFAULT = 10;
 
 sub make_varname {
     my $length = shift;
-    $length = 10 if ! defined $length;
-    $length =  3 if $length <  3;
-    $length = 20 if $length > 20;
+    $length = $DEFAULT if ! defined $length;
+    $length = $MIN if $length < $MIN;
+    $length = $MAX if $length > $MAX;
     my @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
     my @upper = map { uc($_) } @lower;
     my @eligibles = (@upper, @lower, q{_});
     my @chars = (@eligibles, 0..9);
-    my $varname = $eligibles[int(rand(@eligibles))];
-    $varname .= $chars[int(rand(@chars))] for (1 .. ($length - 1));
+    my $varname;
+    MKVAR: {
+        $varname = $eligibles[int(rand(@eligibles))];
+        $varname .= $chars[int(rand(@chars))] for (1 .. ($length - 1));
+        next MKVAR if $forbidden{$varname};
+    }
     return $varname;
 }
 
@@ -27,7 +36,7 @@ String::MkVarName - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.01, released November 12, 2005.
+This document refers to version 0.02, released November 17, 2005.
 
 =head1 SYNOPSIS
 
