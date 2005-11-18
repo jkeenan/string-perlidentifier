@@ -25,7 +25,6 @@ html/
 research/
 superseded/
 svndiff/
-^Todo
 ^.cvsignore
 ^init
 ^results
