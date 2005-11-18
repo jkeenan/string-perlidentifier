@@ -4,6 +4,9 @@ use strict;
 use warnings;
 
 BEGIN { use_ok( 'String::MkVarName', qw{ make_varname } ); }
+use lib ("t/");
+use Auxiliary qw{ _first_and_subsequent };
+
 our (%eligibles, %chars);
 require "t/eligible_chars";
 
@@ -15,15 +18,6 @@ sub specified_length_tests {
     my $length = length($varname);
     is( $length, $specified, "length of string is $specified as specified");
     
-    my @els = split(q{}, $varname);
-    ok( $eligibles{$els[0]},
-        "first character in variable is letter or underscore");
-    my @balance = @els[1..$#els];
-    my $factor = 0;
-    while ( defined ( my $k = shift @balance ) ) {
-        $factor = 1 if ! $chars{$k};
-        last if $factor;
-    }
-    ok(! $factor, "characters 2..last are letters, numerals or underscore");
+    _first_and_subsequent($varname);
 }
 
