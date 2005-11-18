@@ -1,95 +1,70 @@
 package String::MkVarName;
+use 5.006001;
 use strict;
+use base qw(Exporter);
+our @EXPORT_OK = qw{ make_varname };
+our $VERSION = "0.01";
 
-BEGIN {
-    use Exporter ();
-    use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.01';
-    @ISA         = qw(Exporter);
-    #Give a hoot don't pollute, do not export more than needed by default
-    @EXPORT      = qw();
-    @EXPORT_OK   = qw();
-    %EXPORT_TAGS = ();
+sub make_varname {
+    my $length = shift;
+    $length = 10 if ! defined $length;
+    $length =  3 if $length <  3;
+    $length = 20 if $length > 20;
+    my @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
+    my @upper = map { uc($_) } @lower;
+    my @eligibles = (@upper, @lower, q{_});
+    my @chars = (@eligibles, 0..9);
+    my $varname = $eligibles[int(rand(@eligibles))];
+    $varname .= $chars[int(rand(@chars))] for (1 .. ($length - 1));
+    return $varname;
 }
 
-
-#################### subroutine header begin ####################
-
-=head2 sample_function
-
- Usage     : How to use this function/method
- Purpose   : What it does
- Returns   : What it returns
- Argument  : What it wants to know
- Throws    : Exceptions and other anomolies
- Comment   : This is a sample subroutine header.
-           : It is polite to include more pod and fewer comments.
-
-See Also   : 
-
-=cut
-
-#################### subroutine header end ####################
-
-
-sub new
-{
-    my ($class, %parameters) = @_;
-
-    my $self = bless ({}, ref ($class) || $class);
-
-    return $self;
-}
-
-
-#################### main pod documentation begin ###################
-## Below is the stub of documentation for your module. 
-## You better edit it!
-
+#################### DOCUMENTATION ###################
 
 =head1 NAME
 
 String::MkVarName - Generate a random name for a Perl variable
 
+=head1 VERSION
+
+This document refers to version 0.01, released November 12, 2005.
+
 =head1 SYNOPSIS
 
-  use String::MkVarName;
-  blah blah blah
+    use String::MkVarName qw( make_varname );
 
+    $varname = make_varname();      # defaults to 10 characters
+
+or
+
+    $varname = make_varname(12);    # min: 3    max: 20
 
 =head1 DESCRIPTION
 
-Stub documentation for this module was created by ExtUtils::ModuleMaker.
-It looks like the author of the extension was negligent enough
-to leave the stub unedited.
+This module exports one subroutine, C<make_varname()>, which returns a string
+composed of random characters that qualifies to be the name for a Perl
+variable.  The characters are limited to upper- and lower-case letters in the 
+English alphabet, the numerals from 0 through 9 and the underscore character.
+The first character may not be a numeral.
 
-Blah blah blah.
+By default, C<make_varname()> returns a string of 10 characters, but if a
+numerical argument between 3 and 20 is passed to it, a string of that length
+will be returned.  Arguments smaller than 3 are rounded up to 3; arguments
+greater than 20 are rounded down to 20.
 
+=head1 TODO
 
-=head1 USAGE
-
-
-
-=head1 BUGS
-
-
-
-=head1 SUPPORT
-
-
-
-=head1 HISTORY
-
-0.01 Thu Nov 17 19:10:54 2005
-    - original version; created by ExtUtils::ModuleMaker 0.43_04
-
+Ideally, before returning a string to be used as the name of a Perl variable,
+the function should check that no variable of that name is currently in scope.
+This would require checking all package variables, lexical variables and the
+Perl special variables.  It doesn't do that yet.
 
 =head1 AUTHOR
 
-    James E Keenan
-    CPAN ID: JKEENAN
-    jkeenan@cpan.org
-    http://search.cpan.org/~jkeenan/
+	James E Keenan
+	CPAN ID: JKEENAN
+	jkeenan@cpan.org
+	http://search.cpan.org/~jkeenan
 
 =head1 COPYRIGHT
 
@@ -99,16 +74,8 @@ it and/or modify it under the same terms as Perl itself.
 The full text of the license can be found in the
 LICENSE file included with this module.
 
-
-=head1 SEE ALSO
-
-perl(1).
-
 =cut
 
-#################### main pod documentation end ###################
-
-
 1;
-# The preceding line will help the module return a true value
+
 
