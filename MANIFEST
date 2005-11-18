@@ -5,4 +5,4 @@ LICENSE
 Todo
 Makefile.PL
 lib/String/MkVarName.pm
-t/01_load.t
+t/01_basic.t
