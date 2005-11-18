@@ -6,6 +6,11 @@ our @EXPORT_OK = qw{ make_varname };
 our $VERSION = "0.02";
 use Carp;
 
+our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
+our @upper = map { uc($_) } @lower;
+our @eligibles = (@upper, @lower, q{_});
+our @chars = (@eligibles, 0..9);
+
 our %forbidden = ();
 our $MIN = 3;
 our $MAX = 20;
@@ -29,25 +34,17 @@ sub make_varname {
                 unless $argsref->{max} >= 3;
             $MAX = $argsref->{max};
         }
-#        } else {
-#            croak "Cannot set maximum length less than 3: $!";
-#        }
-#        if ( (defined $argsref->{default}) and 
-#             ($argsref->{default} =~ /^\d+$/) ) {
-#            $DEFAULT = $argsref->{default};
-#        } else {
-#            croak "Default must be all numerals: $!";
-#        }
+        if (defined $argsref->{default}) {
+            croak "Default must be all numerals: $!"
+                unless $argsref->{default} =~ /^\d+$/;
+            $DEFAULT = $argsref->{default};
+        }
     } else {
         $length = shift;
     }
     $length = $DEFAULT if ! defined $length;
     $length = $MIN if $length < $MIN;
     $length = $MAX if $length > $MAX;
-    my @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
-    my @upper = map { uc($_) } @lower;
-    my @eligibles = (@upper, @lower, q{_});
-    my @chars = (@eligibles, 0..9);
     my $varname;
     MKVAR: {
         $varname = $eligibles[int(rand(@eligibles))];
