@@ -1,5 +1,5 @@
-# t/01_basic.t - four basic tests
-use Test::More tests => 41;
+# t/02_specified.t - tests for specified length
+use Test::More tests => 55;
 use strict;
 use warnings;
 
@@ -7,13 +7,13 @@ BEGIN { use_ok( 'String::MkVarName', qw{ make_varname } ); }
 our (%eligibles, %chars);
 require "t/eligible_chars";
 
-four_basic_tests() for (1..10);
+specified_length_tests($_) for (3..20);
 
-sub four_basic_tests {
-    my $varname = make_varname();
+sub specified_length_tests {
+    my $specified = shift;
+    my $varname = make_varname($specified);
     my $length = length($varname);
-    ok( ($length >= 3), "length meets or exceeds minimum");
-    ok( ($length <= 20), "length meets or is less than maximum");
+    is( $length, $specified, "length of string is $specified as specified");
     
     my @els = split(q{}, $varname);
     ok( $eligibles{$els[0]},
