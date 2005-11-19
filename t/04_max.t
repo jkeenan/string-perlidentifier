@@ -1,7 +1,7 @@
 # t/04_max.t - test for correct failures due to bad arguments
 use Test::More 
-# tests => 141;
-qw(no_plan);
+tests => 111;
+# qw(no_plan);
 use strict;
 use warnings;
 

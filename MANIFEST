@@ -11,3 +11,4 @@ t/04_max.t
 t/Auxiliary.pm
 t/eligible_chars
 Todo
+META.yml                                 Module meta-data (added by MakeMaker)
