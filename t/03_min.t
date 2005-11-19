@@ -1,6 +1,5 @@
 # t/03_min.t - test for correct failures due to bad arguments
-use Test::More 
-tests =>  31;
+use Test::More tests =>  31;
 # qw(no_plan);
 use strict;
 use warnings;

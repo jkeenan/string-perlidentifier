@@ -39,6 +39,11 @@ sub make_varname {
                 unless $argsref->{default} =~ /^\d+$/;
             $DEFAULT = $argsref->{default};
         }
+        if ( (defined $argsref->{min}) &&
+             (defined $argsref->{max}) ) {
+            croak "Minimum must be <= Maximum: $!"
+                if $argsref->{min} >= $argsref->{max};
+        }
     } else {
         $length = shift;
     }

@@ -1,6 +1,5 @@
 # t/05_default.t - test for correct failures due to bad arguments
-use Test::More 
-tests =>  58;
+use Test::More tests =>  58;
 # qw(no_plan);
 use strict;
 use warnings;

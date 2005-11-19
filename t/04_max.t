@@ -1,6 +1,5 @@
 # t/04_max.t - test for correct failures due to bad arguments
-use Test::More 
-tests => 111;
+use Test::More tests => 112;
 # qw(no_plan);
 use strict;
 use warnings;
@@ -23,6 +22,10 @@ like($@, qr/$pattern/, "use of non-numerals correctly fails");
 eval { $varname = make_varname( { max => 2 } ); };
 $pattern = qq{Cannot set maximum length less than 3};
 like($@, qr/$pattern/, "attempt to set maximum less than 3 correctly fails");
+
+eval { $varname = make_varname( { min => 12, max => 9 } ); };
+$pattern = qq{Minimum must be <= Maximum};
+like($@, qr/$pattern/, "minimum > maximum correctly fails");
 
 ##### SUBROUTINES #####
 

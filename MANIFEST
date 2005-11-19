@@ -3,6 +3,7 @@ LICENSE
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
+META.yml			Module meta-data (added by MakeMaker)
 README
 t/01_basic.t
 t/02_specified.t
@@ -12,4 +13,3 @@ t/05_default.t
 t/Auxiliary.pm
 t/eligible_chars
 Todo
-META.yml                                 Module meta-data (added by MakeMaker)
