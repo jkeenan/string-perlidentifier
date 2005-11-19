@@ -2,7 +2,7 @@ package String::MkVarName;
 use 5.006001;
 use strict;
 use base qw(Exporter);
-our @EXPORT_OK = qw{ make_varname };
+our @EXPORT = qw{ make_varname };
 our $VERSION = "0.03";
 use Carp;
 
@@ -71,7 +71,7 @@ This document refers to version 0.03, released November 19, 2005.
 
 =head1 SYNOPSIS
 
-    use String::MkVarName qw( make_varname );
+    use String::MkVarName;
 
     $varname = make_varname();      # defaults to 10 characters
 
@@ -89,11 +89,11 @@ or
 
 =head1 DESCRIPTION
 
-This module exports one subroutine, C<make_varname()>, which returns a string
-composed of random characters that qualifies to be the name for a Perl
-variable.  The characters are limited to upper- and lower-case letters in the 
-English alphabet, the numerals from 0 through 9 and the underscore character.
-The first character may not be a numeral.
+This module automatically exports a single subroutine, C<make_varname()>, 
+which returns a string composed of random characters that qualifies as 
+the name for a Perl variable.  The characters are limited to upper- and
+lower-case letters in the English alphabet, the numerals from 0 through 9
+and the underscore character.  The first character may not be a numeral.
 
 By default, C<make_varname()> returns a string of 10 characters, but if a
 numerical argument between 3 and 20 is passed to it, a string of that length
@@ -117,14 +117,16 @@ and C<croak>.  But if you set C<default> less than C<min> or greater than
 C<max>, the default value will be raised to the minimum or lowered to the
 maximum as is appropriate.
 
+B<Note:>  Although the strings returned by C<make_varname()> qualify as Perl
+identifiers, they also are a subset of the set of valid directory and file
+names on operating systems such as Unix and Windows.  This is how, for
+instance, this module's author uses C<make_varname()>.
+
 =head1 TO DO
 
-Ideally, before returning a string to be used as the name of a Perl variable,
-the function should check that no variable of that name is currently in scope.
-This would require checking all package variables, lexical variables and the
-Perl special variables.  More generally, you should be able to pass the
-function a list of strings forbidden to be returned by C<make_varname>.
-String::MkVar::Name doesn't do that yet.
+Ideally, you should be able to pass the function a list of strings 
+forbidden to be returned by C<make_varname>, I<e.g.,> a list of all 
+Perl variables currently in scope.  String::MkVar::Name doesn't do that yet.
 
 =head1 SEE ALSO
 
@@ -157,7 +159,8 @@ String::Random's greater generality comes at the cost of more typing.
 =item File::Save::Home
 
 CPAN module by the same author as String::MkVarName which uses
-C<make_varname()> in its test suite.  File::Save::Home is used internally
+C<make_varname()> in its test suite as of its version 0.05.  
+File::Save::Home is used internally
 within recent versions of ExtUtils::ModuleMaker and its test suite.
 
 =back

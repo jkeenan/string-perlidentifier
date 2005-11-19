@@ -30,7 +30,7 @@ If you are installing this module on a Win32 system with 'nmake',
 substitute 'nmake' for 'make' in the sequence of commands above.
 
 In sending e-mail to the maintainer, please put "String::MkVarName", 
-or "String-MkVarName" in the subject line.
+or "String-MkVarName" or "make_varname" in the subject line.
 
 Author:  James E Keenan
 CPAN ID:  JKEENAN

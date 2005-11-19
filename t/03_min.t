@@ -4,7 +4,7 @@ use Test::More tests =>  31;
 use strict;
 use warnings;
 
-BEGIN { use_ok( 'String::MkVarName', qw{ make_varname } ); }
+BEGIN { use_ok( 'String::MkVarName' ); }
 use lib ("t/");
 use Auxiliary qw{ _first_and_subsequent };
 

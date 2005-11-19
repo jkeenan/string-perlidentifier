@@ -9,6 +9,7 @@ CVS/.*
 \.bak$
 \.tmp$
 \.swp$
+\.html$
 ~$
 ^#
 \.shar$
