@@ -3,7 +3,7 @@ use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT_OK = qw{ make_varname };
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
@@ -67,7 +67,7 @@ String::MkVarName - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.02, released November 17, 2005.
+This document refers to version 0.03, released November 19, 2005.
 
 =head1 SYNOPSIS
 
@@ -78,6 +78,14 @@ This document refers to version 0.02, released November 17, 2005.
 or
 
     $varname = make_varname(12);    # min: 3    max: 20
+
+or
+
+    $varname = make_varname( {      # set your own attributes
+        min     => $minimum,
+        max     => $maximum,
+        default => $default,
+    } );
 
 =head1 DESCRIPTION
 
@@ -92,12 +100,67 @@ numerical argument between 3 and 20 is passed to it, a string of that length
 will be returned.  Arguments smaller than 3 are rounded up to 3; arguments
 greater than 20 are rounded down to 20.
 
-=head1 TODO
+C<make_varname()> can also take as an argument a reference to a hash
+containing one or more of the following keys:
+
+    min
+    max
+    default
+
+So if you wanted your string to contain a minimum of 15 characters and a
+maximum of 30, you would call:
+
+    $varname = make_varname( { min => 15, max => 30 } );
+
+If you try to set C<min> greater than C<max>, you will get an error message
+and C<croak>.  But if you set C<default> less than C<min> or greater than
+C<max>, the default value will be raised to the minimum or lowered to the
+maximum as is appropriate.
+
+=head1 TO DO
 
 Ideally, before returning a string to be used as the name of a Perl variable,
 the function should check that no variable of that name is currently in scope.
 This would require checking all package variables, lexical variables and the
-Perl special variables.  It doesn't do that yet.
+Perl special variables.  More generally, you should be able to pass the
+function a list of strings forbidden to be returned by C<make_varname>.
+String::MkVar::Name doesn't do that yet.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item String::MkPasswd
+
+This CPAN module by Chris Grau was the inspiration for String::MkVarName.
+String::MkVarName evolved as a simplification of String::MkPasswd for use in
+the test suite for my other CPAN module File::Save::Home.
+
+=item String::Random
+
+This CPAN module by Steven Pritchard is a more general solution to the problem
+of generating strings composed of random characters.  To generate a
+10-character string that would qualify as a Perl identifier using
+String::Random, you would proceed as follows:
+
+    use String::Random;
+    $rr = String::Random->new();
+    $rr->{'E'} = [ 'A'..'Z', 'a'..'z', '_' ];
+    $rr->{'F'} = [ 'A'..'Z', 'a'..'z', '_', 0..9 ];
+
+then
+
+    $rr->randpattern("EFFFFFFFFF");
+
+String::Random's greater generality comes at the cost of more typing.
+
+=item File::Save::Home
+
+CPAN module by the same author as String::MkVarName which uses
+C<make_varname()> in its test suite.  File::Save::Home is used internally
+within recent versions of ExtUtils::ModuleMaker and its test suite.
+
+=back
 
 =head1 AUTHOR
 
@@ -105,6 +168,19 @@ Perl special variables.  It doesn't do that yet.
 	CPAN ID: JKEENAN
 	jkeenan@cpan.org
 	http://search.cpan.org/~jkeenan
+
+=head1 SUPPORT
+
+Send email to jkeenan [at] cpan [dot] org.  Please include any of the
+following in the subject line:
+
+    String::MkVarName
+    String-MkVarName
+    make_varname
+
+in the subject line.  Please report any bugs or feature requests to
+C<bug-String-MkVarName@rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org>.
 
 =head1 COPYRIGHT
 

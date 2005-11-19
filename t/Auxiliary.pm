@@ -2,7 +2,7 @@ package Auxiliary;
 use strict;
 use warnings;
 our ($VERSION, @ISA, @EXPORT_OK);
-$VERSION = '0.02';
+$VERSION = '0.03';
 require Exporter;
 @ISA         = qw(Exporter);
 @EXPORT_OK   = qw(
