@@ -1,5 +1,5 @@
 # t/05_default.t - test for correct failures due to bad arguments
-use Test::More tests =>  58;
+use Test::More tests =>  61;
 # qw(no_plan);
 use strict;
 use warnings;
@@ -26,6 +26,18 @@ ok( ($length == 3), "default < minimum is automatically corrected");
 $varname = make_varname( { default => 21 } );
 $length = length($varname);
 ok( ($length == 20), "default > maximum is automatically corrected");
+
+$varname = make_varname( { default => 12, min => 15 } );
+$length = length($varname);
+ok( ($length == 15), "default < minimum is automatically corrected");
+
+$varname = make_varname( { default => 20, max => 15 } );
+$length = length($varname);
+ok( ($length == 15), "default > maximum is automatically corrected");
+
+eval { $varname = make_varname( { min => 12, max => 9, default => 11 } ); };
+$pattern = qq{Minimum must be <= Maximum};
+like($@, qr/$pattern/, "minimum > maximum correctly fails");
 
 ##### SUBROUTINES #####
 

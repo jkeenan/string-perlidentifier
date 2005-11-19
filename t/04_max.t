@@ -1,5 +1,5 @@
 # t/04_max.t - test for correct failures due to bad arguments
-use Test::More tests => 112;
+use Test::More tests => 114;
 # qw(no_plan);
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ use Auxiliary qw{ _first_and_subsequent };
 our (%eligibles, %chars);
 require "t/eligible_chars";
 
-my ($varname, $pattern);
+my ($varname, $pattern, $length);
 
 four_basic_tests_max($_) for (3..19,21..30);
 
@@ -26,6 +26,14 @@ like($@, qr/$pattern/, "attempt to set maximum less than 3 correctly fails");
 eval { $varname = make_varname( { min => 12, max => 9 } ); };
 $pattern = qq{Minimum must be <= Maximum};
 like($@, qr/$pattern/, "minimum > maximum correctly fails");
+
+$varname = make_varname( { min => 12, max => 19 } );
+$length = length($varname);
+ok( ($length == 12), "default < minimum is automatically corrected");
+
+$varname = make_varname( { min =>  6, max =>  9 } );
+$length = length($varname);
+ok( ($length ==  9), "default > maximum is automatically corrected");
 
 ##### SUBROUTINES #####
 
