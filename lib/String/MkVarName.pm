@@ -1,9 +1,9 @@
-package String::MkVarName;
+package String::PerlIdentifier;
 use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT = qw{ make_varname };
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
@@ -63,15 +63,15 @@ sub make_varname {
 
 =head1 NAME
 
-String::MkVarName - Generate a random name for a Perl variable
+String::PerlIdentifier - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.03, released November 19, 2005.
+This document refers to version 0.04, released November 25, 2005.
 
 =head1 SYNOPSIS
 
-    use String::MkVarName;
+    use String::PerlIdentifier;
 
     $varname = make_varname();      # defaults to 10 characters
 
@@ -134,8 +134,8 @@ Perl variables currently in scope.  String::MkVar::Name doesn't do that yet.
 
 =item String::MkPasswd
 
-This CPAN module by Chris Grau was the inspiration for String::MkVarName.
-String::MkVarName evolved as a simplification of String::MkPasswd for use in
+This CPAN module by Chris Grau was the inspiration for String::PerlIdentifier.
+String::PerlIdentifier evolved as a simplification of String::MkPasswd for use in
 the test suite for my other CPAN module File::Save::Home.
 
 =item String::Random
@@ -158,7 +158,7 @@ String::Random's greater generality comes at the cost of more typing.
 
 =item File::Save::Home
 
-CPAN module by the same author as String::MkVarName which uses
+CPAN module by the same author as String::PerlIdentifier which uses
 C<make_varname()> in its test suite as of its version 0.05.  
 File::Save::Home is used internally
 within recent versions of ExtUtils::ModuleMaker and its test suite.
@@ -177,12 +177,12 @@ within recent versions of ExtUtils::ModuleMaker and its test suite.
 Send email to jkeenan [at] cpan [dot] org.  Please include any of the
 following in the subject line:
 
-    String::MkVarName
-    String-MkVarName
+    String::PerlIdentifier
+    String-PerlIdentifier
     make_varname
 
 in the subject line.  Please report any bugs or feature requests to
-C<bug-String-MkVarName@rt.cpan.org>, or through the web interface at
+C<bug-String-PerlIdentifier@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>.
 
 =head1 COPYRIGHT
