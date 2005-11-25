@@ -4,7 +4,7 @@ use Test::More tests => 114;
 use strict;
 use warnings;
 
-BEGIN { use_ok( 'String::MkVarName' ); }
+BEGIN { use_ok( 'String::PerlIdentifier' ); }
 use lib ("t/");
 use Auxiliary qw{ _first_and_subsequent };
 

@@ -122,11 +122,15 @@ identifiers, they also are a subset of the set of valid directory and file
 names on operating systems such as Unix and Windows.  This is how, for
 instance, this module's author uses C<make_varname()>.
 
+B<Note:>  String::PerlIdentifier originally appeared on CPAN as
+String::MkVarName.  When I went to register it on F<modules@perl.org>, 
+C<brian d foy> persuaded me to change the name.
+
 =head1 TO DO
 
 Ideally, you should be able to pass the function a list of strings 
 forbidden to be returned by C<make_varname>, I<e.g.,> a list of all 
-Perl variables currently in scope.  String::MkVar::Name doesn't do that yet.
+Perl variables currently in scope.  String::PerlIdentifier doesn't do that yet.
 
 =head1 SEE ALSO
 
@@ -135,8 +139,8 @@ Perl variables currently in scope.  String::MkVar::Name doesn't do that yet.
 =item String::MkPasswd
 
 This CPAN module by Chris Grau was the inspiration for String::PerlIdentifier.
-String::PerlIdentifier evolved as a simplification of String::MkPasswd for use in
-the test suite for my other CPAN module File::Save::Home.
+String::PerlIdentifier evolved as a simplification of String::MkPasswd for 
+use in the test suite for my other CPAN module File::Save::Home.
 
 =item String::Random
 
@@ -160,8 +164,8 @@ String::Random's greater generality comes at the cost of more typing.
 
 CPAN module by the same author as String::PerlIdentifier which uses
 C<make_varname()> in its test suite as of its version 0.05.  
-File::Save::Home is used internally
-within recent versions of ExtUtils::ModuleMaker and its test suite.
+File::Save::Home is used internally within recent versions of 
+ExtUtils::ModuleMaker and its test suite.
 
 =back
 
