@@ -3,7 +3,7 @@ use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT = qw{ make_varname };
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
@@ -77,7 +77,7 @@ String::PerlIdentifier - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.04, released November 25, 2005.
+This document refers to version 0.05, released April 21, 2004.
 
 =head1 SYNOPSIS
 
