@@ -8,8 +8,9 @@ use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
 our @upper = map { uc($_) } @lower;
-our @eligibles = (@upper, @lower, q{_});
-our @chars = (@eligibles, 0..9);
+#our @eligibles = (@upper, @lower, q{_});
+#our @chars = (@eligibles, 0..9);
+our @alphas = (@upper, @lower);
 
 our %forbidden = ();
 our $MIN = 3;
@@ -18,8 +19,14 @@ our $DEFAULT = 10;
 
 sub make_varname {
     my $length;
+    my (@eligibles, @chars);
+    my $scoresflag = 1;
     if (defined $_[0] and ref($_[0]) eq 'HASH') {
         my $argsref = shift;
+        if ( (defined $argsref->{underscores}) &&
+             ($argsref->{underscores} == 0) ) {
+                 $scoresflag = 0;
+        }
         if (defined $argsref->{min}) {
             croak "Minimum must be all numerals: $!"
                 unless $argsref->{min} =~ /^\d+$/;
@@ -50,6 +57,9 @@ sub make_varname {
     $length = $DEFAULT if ! defined $length;
     $length = $MIN if $length < $MIN;
     $length = $MAX if $length > $MAX;
+    @eligibles = (@alphas, q{_}) if ($scoresflag);
+    @chars     = (@eligibles, 0..9);
+        
     my $varname;
     MKVAR: {
         $varname = $eligibles[int(rand(@eligibles))];
