@@ -10,5 +10,6 @@ t/02_specified.t
 t/03_min.t
 t/04_max.t
 t/05_default.t
+t/06_no_scores.t
 t/Auxiliary.pm
 t/eligible_chars
