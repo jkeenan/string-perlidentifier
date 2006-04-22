@@ -1,14 +1,14 @@
 README for Perl extension String::PerlIdentifier
 
-This document refers to version 0.05 of String::PerlIdentifier.  
-This version was released April 21, 2004.
+This document refers to version 0.05_01 of String::PerlIdentifier.  
+This version was released April 22, 2004.
 
 To install this module on your system, place the tarball archive file in a 
 temporary directory and call the following:
 
-% gunzip String-PerlIdentifier-0.05.tar.gz
-% tar xf String-PerlIdentifier-0.05.tar
-% cd String-PerlIdentifier-0.05
+% gunzip String-PerlIdentifier-0.05_01.tar.gz
+% tar xf String-PerlIdentifier-0.05_01.tar
+% cd String-PerlIdentifier-0.05_01
 % perl Makefile.PL
 % make
 % make test

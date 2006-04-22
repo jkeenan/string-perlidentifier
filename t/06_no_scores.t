@@ -1,7 +1,7 @@
 # t/06_no_scores.t - four basic tests for 'no underscores' option
 use Test::More 
-# tests => 41;
-qw(no_plan);
+tests => 41;
+# qw(no_plan);
 use strict;
 use warnings;
 

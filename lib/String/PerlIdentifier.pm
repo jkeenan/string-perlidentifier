@@ -3,13 +3,11 @@ use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT = qw{ make_varname };
-our $VERSION = "0.05";
+our $VERSION = "0.05_01";
 use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
 our @upper = map { uc($_) } @lower;
-#our @eligibles = (@upper, @lower, q{_});
-#our @chars = (@eligibles, 0..9);
 our @alphas = (@upper, @lower);
 
 our %forbidden = ();
@@ -77,7 +75,7 @@ String::PerlIdentifier - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.05, released April 21, 2004.
+This document refers to version 0.05_01, released April 22, 2004.
 
 =head1 SYNOPSIS
 
