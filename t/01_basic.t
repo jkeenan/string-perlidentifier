@@ -7,9 +7,6 @@ BEGIN { use_ok( 'String::PerlIdentifier' ); }
 use lib ("t/");
 use Auxiliary qw{ _first_and_subsequent };
 
-our (%eligibles, %chars);
-require "t/eligible_chars";
-
 four_basic_tests() for (1..10);
 
 sub four_basic_tests {

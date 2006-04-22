@@ -57,7 +57,7 @@ sub make_varname {
     $length = $DEFAULT if ! defined $length;
     $length = $MIN if $length < $MIN;
     $length = $MAX if $length > $MAX;
-    @eligibles = (@alphas, q{_}) if ($scoresflag);
+    @eligibles = $scoresflag ? (@alphas, q{_}) : (@alphas) ;
     @chars     = (@eligibles, 0..9);
         
     my $varname;
