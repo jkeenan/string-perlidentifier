@@ -1,4 +1,5 @@
 package String::PerlIdentifier;
+#$Id$
 use 5.006001;
 use strict;
 use base qw(Exporter);
