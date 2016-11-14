@@ -31,3 +31,6 @@ svndiff/
 ^results
 ^htmlify
 ^.git/
+/META.yml
+/META.json
+^MYMETA.*
