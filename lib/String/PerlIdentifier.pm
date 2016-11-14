@@ -1,10 +1,9 @@
 package String::PerlIdentifier;
-#$Id$
 use 5.006001;
 use strict;
 use base qw(Exporter);
 our @EXPORT = qw{ make_varname };
-our $VERSION = "0.05_01";
+our $VERSION = "0.06";
 use Carp;
 
 our @lower =  qw(a b c d e f g h i j k l m n o p q r s t u v w x y z);
@@ -76,7 +75,7 @@ String::PerlIdentifier - Generate a random name for a Perl variable
 
 =head1 VERSION
 
-This document refers to version 0.05_01, released April 22, 2004.
+This document refers to version 0.06, released November 14 2016.
 
 =head1 SYNOPSIS
 

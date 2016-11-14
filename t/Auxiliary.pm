@@ -9,6 +9,7 @@ require Exporter;
     _first_and_subsequent
 ); 
 *ok = *Test::More::ok;
+use lib ('.'); # where '.' => 't/'
 
 our (%eligibles, %chars);
 require "t/eligible_chars";
