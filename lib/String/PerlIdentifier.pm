@@ -201,21 +201,7 @@ ExtUtils::ModuleMaker and its test suite.
 
 	James E Keenan
 	CPAN ID: JKEENAN
-	jkeenan@cpan.org
-	http://search.cpan.org/~jkeenan
-
-=head1 SUPPORT
-
-Send email to jkeenan [at] cpan [dot] org.  Please include any of the
-following in the subject line:
-
-    String::PerlIdentifier
-    String-PerlIdentifier
-    make_varname
-
-in the subject line.  Please report any bugs or feature requests to
-C<bug-String-PerlIdentifier@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+	jkeenan@pobox.com
 
 =head1 COPYRIGHT
 
